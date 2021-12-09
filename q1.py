@@ -16,12 +16,12 @@ spark = SparkSession(sc)
 
 df = spark.read.option("header",True).csv("hdfs://%s:9000/assignment2/part1/input/" % (hdfs_nn))
 
-#df=df.withColumn('Number of Reviews',df['Number of Reviews'].cast("float"))
 df=df.withColumn('Rating',df['Rating'].cast("float"))
-newdf = df.filter((df['Rating'] >= 1) & (df['Rating'].isNotNull()) )
-newdf = newdf.filter(newdf["Reviews"] != F.lit("[ [  ], [  ] ]"))
-newdf.show()
-print(newdf.count())
+df = df.filter((df['Rating'] >= 1) & (df['Rating'].isNotNull()) )
+df =df.filter(df["Reviews"] != F.lit(""))
+df =df.filter(df["Reviews"].isNotNull())
+df.show()
+print(df.count())
 
-newdf.write.option("header",True).csv("hdfs://%s:9000/assignment2/output/question1/answer.csv"% (hdfs_nn))
+df.write.option("header",True).csv("hdfs://%s:9000/assignment2/output/question1/answer.csv"% (hdfs_nn))
 

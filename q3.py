@@ -19,9 +19,8 @@ df = spark.read.option("header",True).csv("hdfs://%s:9000/assignment2/part1/inpu
 split_cols = F.split(df["Reviews"],'\\], \\[')
 df = df.withColumn('review',split_cols.getItem(0)).withColumn('date',split_cols.getItem(1))
 
-df = df.withColumn('review',F.split(F.col('review'),","))
-df = df.withColumn('date',F.split(F.col('date'),","))
-
+df = df.withColumn('review',F.split(F.col('review'),"', '"))
+df = df.withColumn('date',F.split(F.col('date'),"', '"))
 newdf = df.withColumn("new",F.arrays_zip("review","date"))\
     .withColumn("new",F.explode("new"))\
         .select("ID_TA",F.col("new.review").alias("review"),F.col("new.date").alias("date"))
