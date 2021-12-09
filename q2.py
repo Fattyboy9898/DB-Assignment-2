@@ -10,7 +10,7 @@ sc = SparkContext.getOrCreate()
 
 
 # don't change this line
-hdfs_nn = "172.31.6.233"
+hdfs_nn = sys.argv[1]
 
 spark = SparkSession.builder.appName("Assigment 2 Question 2").getOrCreate()
 # YOUR CODE GOES BELOW
