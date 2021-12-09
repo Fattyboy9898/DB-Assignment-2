@@ -8,7 +8,7 @@ hdfs_nn = sys.argv[1]
 
 spark = SparkSession.builder.appName("Assigment 2 Question 5").getOrCreate()
 # YOUR CODE GOES BELOW
-df = spark.read.parquet("./data/tmdb_5000_credits.parquet")
+df = spark.read.parquet("hdfs://%s:9000/assignment2/part2/input/" % (hdfs_nn))
 def extractName(data):
     print(data)
     movie_id = data.movie_id
@@ -49,4 +49,4 @@ dfForJoining = dfForJoining.withColumnRenamed("actor2","joinActor2")
 df = df.join(dfForJoining,[F.col("actor1")==F.col("joinActor1"),F.col("actor2")==F.col("joinActor2")])
 df = df.select('movie_id','title','actor1','actor2')
 
-df.write.parquet("output/modifiedData5.parquet")
+df.write.option("header",True).csv("hdfs://%s:9000/assignment2/output/question5/"% (hdfs_nn))

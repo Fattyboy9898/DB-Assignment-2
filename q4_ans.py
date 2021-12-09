@@ -13,7 +13,7 @@ sc = SparkContext.getOrCreate()
 # don't change this line. 
 hdfs_nn = sys.argv[1]
 
-spark = SparkSession.builder.appName("Assigment 2 Question 4").getOrCreate()
+spark = SparkSession.builder.appName("Assigment 2 Question 3").getOrCreate()
 # YOUR CODE GOES BELOW
 df = spark.read.option("header",True).csv("hdfs://%s:9000/assignment2/part1/input/" % (hdfs_nn))
 df = df.withColumn('Cuisine Style',F.regexp_replace('Cuisine Style',"\\[",""))
