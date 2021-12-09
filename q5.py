@@ -49,4 +49,4 @@ dfForJoining = dfForJoining.withColumnRenamed("actor2","joinActor2")
 df = df.join(dfForJoining,[F.col("actor1")==F.col("joinActor1"),F.col("actor2")==F.col("joinActor2")])
 df = df.select('movie_id','title','actor1','actor2')
 
-df.write.option("header",True).csv("hdfs://%s:9000/assignment2/output/question5/answer.csv"% (hdfs_nn))
+df.write.option("header",True).parquet("hdfs://%s:9000/assignment2/output/question5/answer.parquet"% (hdfs_nn))
