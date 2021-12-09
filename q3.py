@@ -31,8 +31,6 @@ newdf = newdf.withColumn('review',F.regexp_replace('review',"\\[",""))
 newdf = newdf.withColumn('date',F.regexp_replace('date',"\\]",""))
 newdf.show()
 
-newdf.printSchema()
-
 newdf.write.option("header",True).csv("hdfs://%s:9000/assignment2/output/question3/answer.csv"% (hdfs_nn))
 
 
