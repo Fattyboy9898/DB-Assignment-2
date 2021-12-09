@@ -23,6 +23,7 @@ df_exploded = df.withColumn('Cuisine Style',explode('Cuisine Style'))
 newdf = df_exploded.select("City","Cuisine Style")
 newdf = newdf.groupBy("City", "Cuisine Style").agg(count("*").alias("count"))
 newdf = newdf.select(col("City").alias("City"),col("Cuisine Style").alias("Cuisine"),col("count").alias("count"))
+newdf = newdf.sort("City")
 newdf.show()
 
 newdf.write.option("header",True).csv("hdfs://%s:9000/assignment2/output/question4/answer.csv"% (hdfs_nn))
