@@ -33,7 +33,7 @@ newdf.show()
 
 newdf.printSchema()
 
-newdf.write.option("header",True).csv("hdfs://%s:9000/assignment2/output/question3/"% (hdfs_nn))
+newdf.write.option("header",True).csv("hdfs://%s:9000/assignment2/output/question3/answer.csv"% (hdfs_nn))
 
 
 

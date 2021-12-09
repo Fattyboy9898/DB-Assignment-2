@@ -20,5 +20,5 @@ df = spark.read.option("header",True).csv("hdfs://%s:9000/assignment2/part1/inpu
 df=df.withColumn('Rating',df['Rating'].cast("float"))
 newdf = df.filter((df['Rating'] >= 1) & (df['Rating'].isNotNull()) )
 newdf = newdf.filter(newdf["Reviews"] != F.lit("[ [  ], [  ] ]"))
-newdf.write.option("header",True).csv("hdfs://%s:9000/assignment2/output/question1/"% (hdfs_nn))
+newdf.write.option("header",True).csv("hdfs://%s:9000/assignment2/output/question1/answer.csv"% (hdfs_nn))
 
