@@ -10,7 +10,7 @@ spark = SparkSession.builder.appName("Assigment 2 Question 5").getOrCreate()
 # YOUR CODE GOES BELOW
 df = spark.read.parquet("hdfs://%s:9000/assignment2/part2/input/" % (hdfs_nn))
 def extractName(data):
-    print(data)
+    #print(data)
     movie_id = data.movie_id
     title = data.title
     cast = data.cast
