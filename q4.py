@@ -25,5 +25,6 @@ newdf = newdf.groupBy("City", "Cuisine Style").agg(count("*").alias("count"))
 newdf = newdf.select(col("City").alias("City"),col("Cuisine Style").alias("Cuisine"),col("count").alias("count"))
 newdf = newdf.sort("City")
 newdf.show()
+print(newdf.count())
 
 newdf.write.option("header",True).csv("hdfs://%s:9000/assignment2/output/question4/answer.csv"% (hdfs_nn))

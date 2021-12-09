@@ -30,6 +30,7 @@ df2 = df2max.union(df2min)
 df = df.join(df2,["Name","City","Price Range","Rating"],'inner').sort("City","Price Range","Rating")
 df = df.select("_c0","Name","City","Cuisine Style","Ranking","Rating","Price Range","Number of Reviews","Reviews","URL_TA","ID_TA")
 df.show()
+print(df.count())
 
 df.write.option("header",True).csv("hdfs://%s:9000/assignment2/output/question2/answer.csv"% (hdfs_nn))
 

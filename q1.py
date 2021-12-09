@@ -21,5 +21,7 @@ df=df.withColumn('Rating',df['Rating'].cast("float"))
 newdf = df.filter((df['Rating'] >= 1) & (df['Rating'].isNotNull()) )
 newdf = newdf.filter(newdf["Reviews"] != F.lit("[ [  ], [  ] ]"))
 newdf.show()
+print(newdf.count())
+
 newdf.write.option("header",True).csv("hdfs://%s:9000/assignment2/output/question1/answer.csv"% (hdfs_nn))
 
